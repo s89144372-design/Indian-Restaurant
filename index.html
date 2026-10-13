@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATELIER INDIA — Contemporary Indian Fine Dining | Reserve a Table</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=Italiana&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{ivory:'#FAF6EF',cream:'#F3EDE2',ink:'#131110',char:'#1C1917',brass:'#C19A5B',brass2:'#A77F3F',deep:'#1E2B24',clay:'#9A4A2E',sage:'#E8E0D1'},fontFamily:{display:['Fraunces','serif'],body:['Manrope','sans-serif'],logo:['Italiana','serif']},letterSpacing:{widest2:'0.35em'}}}}
+</script>
+<style>
+*{scrollbar-width:thin;scrollbar-color:#C19A5B #FAF6EF}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:#C19A5B;border-radius:99px}
+html{scroll-behavior:smooth}
+body{font-family:Manrope,sans-serif;background:#FAF6EF;color:#131110;overflow-x:hidden}
+.font-display{font-family:Fraunces,serif}
+.grain:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E")}
+.eyebrow{letter-spacing:.35em;text-transform:uppercase;font-size:11px;font-weight:700}
+.hero-img{animation:kenburns 18s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1) translateY(0)}to{transform:scale(1.08) translateY(-12px)}}
+.reveal{opacity:0;transform:translateY(28px);transition:all .9s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:none}
+.marquee{display:flex;width:max-content;animation:marq 28s linear infinite}
+@keyframes marq{to{transform:translateX(-50%)}}
+.img-zoom img{transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
+.img-zoom:hover img{transform:scale(1.07)}
+.line{height:1px;background:linear-gradient(90deg,transparent,#C19A5B,transparent)}
+.card-shadow{box-shadow:0 20px 50px rgba(19,17,16,.08)}
+.nav-scrolled{background:rgba(250,246,239,.92);backdrop-filter:blur(16px);color:#131110!important;box-shadow:0 10px 30px rgba(0,0,0,.06)}
+.nav-scrolled .nav-link{color:#131110}
+.nav-scrolled .logo-text{color:#131110}
+.menu-btn.active{background:#131110;color:#fff;border-color:#131110}
+.diet-btn.active{background:#1E2B24;color:#fff}
+.time-pill.active,.seat-card.active{background:#131110;color:#fff;border-color:#131110}
+.time-pill.active p,.seat-card.active p{color:#E8E0D1}
+.faq-content{max-height:0;overflow:hidden;transition:max-height .5s ease}
+input,select,textarea{outline:none}
+input:focus,select:focus,textarea:focus{border-color:#C19A5B!important;box-shadow:0 0 0 3px rgba(193,154,91,.15)}
+.modal{transition:all .3s ease}
+.lightbox-img{animation:lb .4s ease}
+@keyframes lb{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+.toast{animation:toastIn .3s ease}
+@keyframes toastIn{from{transform:translateY(16px);opacity:0}to{transform:none;opacity:1}}
+.vertical-text{writing-mode:vertical-rl;letter-spacing:.3em}
+@media(max-width:768px){.vertical-text{display:none}}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- PRELOADER -->
+<div id="preloader" class="fixed inset-0 z-[100] bg-[#131110] flex flex-col items-center justify-center text-ivory transition-opacity duration-700">
+  <p class="font-logo text-[42px] md:text-6xl tracking-[0.25em]">ATELIER <span class="text-brass">INDIA</span></p>
+  <p class="eyebrow text-brass mt-3">Contemporary • Indian • Fine Dining</p>
+  <div class="w-40 h-[1px] bg-white/20 mt-8 overflow-hidden"><div id="loadBar" class="h-full w-0 bg-brass transition-all duration-700"></div></div>
+</div>
+
+<!-- TOP BAR -->
+<div class="fixed top-0 left-0 right-0 z-[60] hidden md:flex justify-between items-center px-8 lg:px-12 py-2 bg-[#131110] text-[#EDE6D6] text-[11px] tracking-[0.18em] uppercase font-semibold">
+  <span>✦ &nbsp;Chef's Tasting Menu — Now Reserving</span>
+  <span class="hidden lg:block">Add Your Address Here &nbsp;•&nbsp; Add Opening Hours</span>
+  <a href="#reserve" class="text-brass hover:text-white">Reserve Your Evening →</a>
+</div>
+
+<!-- NAV -->
+<header id="navbar" class="fixed top-0 md:top-[33px] left-0 right-0 z-50 transition-all duration-500 text-white">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10 flex items-center justify-between h-[72px]">
+    <a href="#home" class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full border border-brass flex items-center justify-center font-logo text-xl text-brass bg-black/20">A</div>
+      <div class="leading-none">
+        <p class="logo-text font-logo text-[22px] tracking-[0.22em]">ATELIER <span class="text-brass">INDIA</span></p>
+        <p class="text-[9px] tracking-[0.35em] uppercase opacity-70 mt-1">Fine Dining • Est. Placeholder</p>
+      </div>
+    </a>
+    <nav class="hidden lg:flex items-center gap-9 text-[12px] tracking-[0.2em] uppercase font-bold">
+      <a href="#about" class="nav-link hover:text-brass">Story</a>
+      <a href="#menu" class="nav-link hover:text-brass">Menu</a>
+      <a href="#experiences" class="nav-link hover:text-brass">Experiences</a>
+      <a href="#packages" class="nav-link hover:text-brass">Tasting</a>
+      <a href="#gallery" class="nav-link hover:text-brass">Gallery</a>
+      <a href="#reviews" class="nav-link hover:text-brass">Guests</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <button onclick="openDrawer()" class="relative hidden sm:flex items-center gap-2 bg-white/10 backdrop-blur border border-white/25 px-4 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase hover:bg-white hover:text-black transition">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        My Tasting <span id="tastingCount" class="w-5 h-5 rounded-full bg-brass text-white text-[10px] flex items-center justify-center">0</span>
+      </button>
+      <a href="#reserve" class="hidden md:inline-flex bg-brass hover:bg-[#131110] hover:text-white text-white px-6 py-3 rounded-full text-xs font-extrabold tracking-[0.18em] uppercase transition shadow-lg shadow-black/20">Reserve a Table</a>
+      <button id="mobileBtn" class="lg:hidden w-11 h-11 rounded-full bg-black/30 backdrop-blur border border-white/30 flex flex-col items-center justify-center gap-[5px]"><span class="w-5 h-[2px] bg-white block"></span><span class="w-5 h-[2px] bg-white block"></span><span class="w-3 h-[2px] bg-brass block self-start ml-3"></span></button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden lg:hidden bg-[#131110] text-white mx-4 rounded-2xl p-6 shadow-2xl">
+    <div class="grid gap-4 text-sm tracking-widest uppercase font-bold">
+      <a href="#about" onclick="closeMobile()">Our Story</a><a href="#menu" onclick="closeMobile()">Signature Menu</a><a href="#experiences" onclick="closeMobile()">Experiences</a><a href="#packages" onclick="closeMobile()">Tasting Packages</a><a href="#gallery" onclick="closeMobile()">Gallery</a><a href="#reserve" onclick="closeMobile()" class="bg-brass text-center py-3 rounded-full">Reserve a Table</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="relative min-h-[100svh] bg-[#131110] overflow-hidden grain">
+  <div class="absolute inset-0 overflow-hidden">
+    <img id="heroImg" src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?q=80&w=2000&auto=format&fit=crop" class="hero-img w-full h-full object-cover opacity-90" alt="Signature Indian fine dining">
+    <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40"></div>
+  </div>
+
+  <div class="hidden xl:block absolute right-10 top-1/2 -translate-y-1/2 z-10 text-white/60 vertical-text text-[10px] uppercase font-bold">New Delhi — Mumbai — Inspired by Every Region of India</div>
+
+  <div class="relative z-10 max-w-[1400px] mx-auto px-5 md:px-10 pt-[150px] md:pt-[190px] pb-16 min-h-[100svh] flex flex-col justify-center">
+    <div class="max-w-3xl">
+      <div class="flex items-center gap-3 reveal visible">
+        <span class="h-[1px] w-12 bg-brass"></span><p class="eyebrow text-brass">Contemporary Indian Fine Dining</p><span class="hidden sm:inline-flex text-[10px] tracking-widest bg-white/10 border border-white/20 text-white px-3 py-1 rounded-full uppercase">Chef-Led • Seasonal • Regional</span>
+      </div>
+      <h1 class="reveal visible font-display text-white font-light leading-[0.92] mt-6 text-[52px] sm:text-[76px] lg:text-[96px]">Where India’s<br><em class="font-normal text-brass">heritage</em> meets<br>modern artistry.</h1>
+      <p class="reveal visible mt-6 text-[#EDE6D6]/90 text-base md:text-lg leading-relaxed max-w-xl">Fire, spice and memory — reimagined plate by plate. A tasting journey through the regions, rituals and rare ingredients that have shaped Indian cuisine for centuries.</p>
+
+      <div class="reveal visible flex flex-wrap gap-3 mt-8">
+        <a href="#menu" class="group inline-flex items-center gap-3 bg-white text-black pl-7 pr-2 py-2 rounded-full font-extrabold text-xs tracking-[0.18em] uppercase hover:bg-brass hover:text-white transition">Explore Our Menu <span class="w-9 h-9 rounded-full bg-black text-white group-hover:bg-white group-hover:text-black flex items-center justify-center transition">→</span></a>
+        <a href="#reserve" class="inline-flex items-center gap-3 bg-brass text-white px-7 py-3.5 rounded-full font-extrabold text-xs tracking-[0.18em] uppercase hover:bg-white hover:text-black transition shadow-xl shadow-black/30">Reserve a Table</a>
+        <button onclick="openVideo()" class="inline-flex items-center gap-3 text-white text-xs font-bold tracking-widest uppercase group"><span class="w-11 h-11 rounded-full border border-white/40 flex items-center justify-center group-hover:bg-white group-hover:text-black transition">▶</span> Watch the film</button>
+      </div>
+
+      <!-- HERO BOOKING BAR -->
+      <form onsubmit="quickBook(event)" class="reveal visible mt-10 bg-white rounded-[20px] md:rounded-full p-2 flex flex-col md:flex-row shadow-2xl max-w-2xl">
+        <div class="flex-1 px-5 py-2 border-b md:border-b-0 md:border-r border-gray-100"><label class="text-[10px] tracking-widest uppercase text-gray-400 font-bold">Date</label><input id="qDate" type="date" class="w-full text-sm font-bold border-none p-0 shadow-none"></div>
+        <div class="flex-1 px-5 py-2 border-b md:border-b-0 md:border-r border-gray-100"><label class="text-[10px] tracking-widest uppercase text-gray-400 font-bold">Guests</label><select id="qGuests" class="w-full text-sm font-bold border-none bg-transparent p-0"><option>2 Guests</option><option>3 Guests</option><option>4 Guests</option><option>6 Guests</option><option>8+ Guests</option></select></div>
+        <div class="flex-1 px-5 py-2"><label class="text-[10px] tracking-widest uppercase text-gray-400 font-bold">Experience</label><select id="qExp" class="w-full text-sm font-bold border-none bg-transparent p-0"><option>Dining Room</option><option>Chef’s Counter</option><option>Private Salon</option><option>Terrace</option></select></div>
+        <button class="bg-[#131110] text-white rounded-full px-7 py-3.5 text-xs tracking-widest uppercase font-extrabold hover:bg-brass transition m-1">Check Availability</button>
+      </form>
+      <p id="quickMsg" class="hidden mt-3 text-emerald-300 text-xs font-bold tracking-wide"></p>
+    </div>
+
+    <!-- HERO BOTTOM CARDS -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-14 max-w-4xl">
+      <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-white"><p class="font-display text-3xl">06</p><p class="text-[10px] tracking-widest uppercase opacity-70 mt-1">Regional Journeys</p></div>
+      <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-white"><p class="font-display text-3xl">07 <span class="text-brass text-lg">courses</span></p><p class="text-[10px] tracking-widest uppercase opacity-70 mt-1">Signature Tasting</p></div>
+      <div class="bg-white text-black rounded-2xl p-4 flex items-center gap-3 cursor-pointer" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})"><img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=200&auto=format&fit=crop" class="w-12 h-12 rounded-xl object-cover"><div><p class="text-[10px] tracking-widest uppercase text-gray-500 font-bold">Today’s Signature</p><p class="font-display font-semibold leading-tight">Tandoor & Smoke</p></div><span class="ml-auto">→</span></div>
+      <div class="hidden lg:flex bg-brass rounded-2xl p-4 text-white items-center justify-between cursor-pointer" onclick="document.getElementById('reserve').scrollIntoView({behavior:'smooth'})"><div><p class="text-[10px] tracking-widest uppercase opacity-80 font-bold">Private Dining</p><p class="font-display text-lg leading-tight">The Salon — 14 Guests</p></div><span class="text-2xl">↗</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="bg-[#131110] text-ivory overflow-hidden py-4 border-y border-white/10">
+  <div class="marquee gap-0">
+    <div class="flex items-center gap-8 pr-8 whitespace-nowrap text-[11px] tracking-[0.35em] uppercase font-bold"><span>Kashmir</span><span class="text-brass">✦</span><span>Awadh</span><span class="text-brass">✦</span><span>Punjab</span><span class="text-brass">✦</span><span>Hyderabad</span><span class="text-brass">✦</span><span>Chettinad</span><span class="text-brass">✦</span><span>Bengal</span><span class="text-brass">✦</span><span>Goa</span><span class="text-brass">✦</span><span>Kerala</span><span class="text-brass">✦</span></div>
+    <div class="flex items-center gap-8 pr-8 whitespace-nowrap text-[11px] tracking-[0.35em] uppercase font-bold"><span>Kashmir</span><span class="text-brass">✦</span><span>Awadh</span><span class="text-brass">✦</span><span>Punjab</span><span class="text-brass">✦</span><span>Hyderabad</span><span class="text-brass">✦</span><span>Chettinad</span><span class="text-brass">✦</span><span>Bengal</span><span class="text-brass">✦</span><span>Goa</span><span class="text-brass">✦</span><span>Kerala</span><span class="text-brass">✦</span></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="py-20 md:py-28 px-5 md:px-10 max-w-[1400px] mx-auto">
+  <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+    <div class="lg:col-span-5 reveal">
+      <p class="eyebrow text-brass2">01 — Our Story</p>
+      <h2 class="font-display text-[42px] md:text-[56px] leading-[1.02] font-light mt-4">Not fusion.<br><em class="text-clay">Evolution,</em> rooted<br>in memory.</h2>
+      <p class="mt-6 text-gray-600 leading-relaxed">Replace this editorial with your restaurant’s verified story — your founders, your city, your philosophy. The layout is designed to hold a real narrative: where you began, what you honour, and why guests return.</p>
+      <p class="mt-4 text-gray-600 leading-relaxed">Every dish begins with a regional reference — a wedding feast, a monsoon evening, a grandmother’s hand-ground masala — then finds a new form through fire, fermentation and contemporary technique.</p>
+      <div class="flex gap-8 mt-8 border-t border-b border-[#E8E0D1] py-6">
+        <div><p class="font-display text-3xl">Seasonal</p><p class="text-[10px] tracking-widest uppercase text-gray-400 font-bold mt-1">Menus Change<br>With Harvest</p></div>
+        <div><p class="font-display text-3xl">Regional</p><p class="text-[10px] tracking-widest uppercase text-gray-400 font-bold mt-1">Recipes, Researched<br>& Respected</p></div>
+        <div><p class="font-display text-3xl text-brass2">Chef-Led</p><p class="text-[10px] tracking-widest uppercase text-gray-400 font-bold mt-1">Add Chef Name<br>& Credentials</p></div>
+      </div>
+      <div class="flex flex-wrap gap-3 mt-8">
+        <a href="#menu" class="bg-[#131110] text-white px-6 py-3.5 rounded-full text-xs tracking-widest uppercase font-bold hover:bg-brass transition">Discover the Menu</a>
+        <a href="#reserve" class="border border-black/20 px-6 py-3.5 rounded-full text-xs tracking-widest uppercase font-bold hover:border-black transition">Meet Us — Reserve →</a>
+      </div>
+      <div class="mt-8 flex items-center gap-4 bg-cream rounded-2xl p-4">
+        <img src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?q=80&w=300&auto=format&fit=crop" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow">
+        <div><p class="font-display text-lg leading-tight">“We cook the India we remember —<br class="hidden md:block"> and the India we imagine.”</p><p class="text-[10px] tracking-widest uppercase text-gray-500 font-bold mt-1">Executive Chef — Add Name Here</p></div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-7 grid grid-cols-2 gap-4 reveal">
+      <div class="img-zoom rounded-[28px] overflow-hidden col-span-2 h-[320px] md:h-[420px] relative">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1600&auto=format&fit=crop" class="w-full h-full object-cover">
+        <span class="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-4 py-2 rounded-full text-[10px] tracking-widest uppercase font-bold">The Dining Room — Add Your Interior Photo</span>
+      </div>
+      <div class="img-zoom rounded-[24px] overflow-hidden h-[240px] md:h-[300px]"><img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover"></div>
+      <div class="rounded-[24px] overflow-hidden h-[240px] md:h-[300px] bg-deep text-white p-6 flex flex-col justify-between">
+        <p class="eyebrow text-brass">The Philosophy</p>
+        <p class="font-display text-[26px] leading-tight font-light">Fire first.<br>Spice with restraint.<br><em class="text-brass">Serve with warmth.</em></p>
+        <p class="text-xs text-white/60 leading-relaxed">Tandoor • Dum • Fermentation • Stone-Ground Masalas • Local Produce</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="bg-[#131110] text-white py-20 md:py-28 relative grain overflow-hidden">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 reveal">
+      <div>
+        <p class="eyebrow text-brass">02 — Signature Menu</p>
+        <h2 class="font-display text-[42px] md:text-[64px] font-light leading-none mt-4">A menu written<br>in <em class="text-brass">fire & memory.</em></h2>
+        <p class="text-white/60 mt-4 max-w-lg text-sm leading-relaxed">Sample presentation below — replace every dish, description and price with your verified menu. Use the filters, search and “Add to Tasting” to explore.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+        <div class="relative flex-1 lg:w-[280px]"><input id="searchInput" oninput="renderMenu()" placeholder="Search dishes, ingredients..." class="w-full bg-white/10 border border-white/15 rounded-full pl-11 pr-4 py-3.5 text-sm placeholder:text-white/40 text-white"><span class="absolute left-4 top-1/2 -translate-y-1/2 opacity-60">⌕</span></div>
+        <select id="sortSelect" onchange="renderMenu()" class="bg-white text-black rounded-full px-5 py-3.5 text-xs font-bold tracking-widest uppercase"><option value="featured">Featured</option><option value="spice-low">Spice: Low → High</option><option value="spice-high">Spice: High → Low</option><option value="name">Name A–Z</option></select>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mt-10 reveal" id="catTabs">
+      <button data-cat="all" onclick="setCat('all',this)" class="menu-btn active border border-white/20 px-5 py-2.5 rounded-full text-[11px] tracking-widest uppercase font-bold transition">All Dishes</button>
+      <button data-cat="starters" onclick="setCat('starters',this)" class="menu-btn border border-white/20 px-5 py-2.5 rounded-full text-[11px] tracking-widest uppercase font-bold transition">Starters & Tandoor</button>
+      <button data-cat="mains" onclick="setCat('mains',this)" class="menu-btn border border-white/20 px-5 py-2.5 rounded-full text-[11px] tracking-widest uppercase font-bold transition">Mains & Biryani</button>
+      <button data-cat="breads" onclick="setCat('breads',this)" class="menu-btn border border-white/20 px-5 py-2.5 rounded-full text-[11px] tracking-widest uppercase font-bold transition">Breads & Rice</button>
+      <button data-cat="desserts" onclick="setCat('desserts',this)" class="menu-btn border border-white/20 px-5 py-2.5 rounded-full text-[11px] tracking-widest uppercase font-bold transition">Desserts</button>
+    </div>
+    <div class="flex flex-wrap gap-2 mt-3 reveal">
+      <button onclick="setDiet('all',this)" class="diet-btn active border border-white/15 px-4 py-2 rounded-full text-[10px] tracking-widest uppercase font-bold">All</button>
+      <button onclick="setDiet('veg',this)" class="diet-btn border border-white/15 px-4 py-2 rounded-full text-[10px] tracking-widest uppercase font-bold">● Vegetarian</button>
+      <button onclick="setDiet('vegan',this)" class="diet-btn border border-white/15 px-4 py-2 rounded-full text-[10px] tracking-widest uppercase font-bold">● Vegan</button>
+      <button onclick="setDiet('nonveg',this)" class="diet-btn border border-white/15 px-4 py-2 rounded-full text-[10px] tracking-widest uppercase font-bold">● Non-Veg</button>
+      <span class="ml-auto text-xs text-white/50 self-center"><span id="resultCount"></span> dishes • Prices: <span class="text-brass font-bold">Add Your Verified Prices</span></span>
+    </div>
+
+    <div id="menuGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-8"></div>
+    <p id="noResult" class="hidden text-center text-white/50 py-16 font-display text-2xl">No dish matches your search — try another ingredient.</p>
+
+    <div class="mt-12 bg-white text-black rounded-[28px] p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 reveal">
+      <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=600&auto=format&fit=crop" class="w-full md:w-40 h-32 object-cover rounded-2xl">
+      <div class="flex-1 text-center md:text-left"><p class="eyebrow text-brass2">Full Menu</p><h3 class="font-display text-3xl mt-1">Want the complete menu with prices?</h3><p class="text-sm text-gray-500 mt-1">Add your downloadable menu PDF / verified price list here. No prices are fabricated on this page.</p></div>
+      <div class="flex gap-3"><button onclick="showToast('Menu PDF placeholder — add your verified menu link')" class="bg-black text-white px-6 py-3.5 rounded-full text-xs tracking-widest uppercase font-bold">View Full Menu ↓</button><a href="#reserve" class="bg-brass text-white px-6 py-3.5 rounded-full text-xs tracking-widest uppercase font-bold">Reserve →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCES -->
+<section id="experiences" class="py-20 md:py-28 px-5 md:px-10 max-w-[1400px] mx-auto">
+  <div class="text-center max-w-2xl mx-auto reveal">
+    <p class="eyebrow text-brass2">03 — Services & Experiences</p>
+    <h2 class="font-display text-[42px] md:text-[56px] font-light leading-tight mt-3">Choose how you<br><em>dine with us.</em></h2>
+    <p class="text-gray-500 mt-4 text-sm leading-relaxed">Confirm and edit only the services you actually offer. Each experience below is a ready-to-customise format.</p>
+  </div>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+    <article class="group bg-white rounded-[26px] overflow-hidden card-shadow reveal cursor-pointer" onclick="selectExperience('Dining Room')">
+      <div class="h-52 overflow-hidden img-zoom"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover"></div>
+      <div class="p-6"><span class="text-[10px] tracking-widest uppercase bg-cream px-3 py-1 rounded-full font-bold">Most Loved</span><h3 class="font-display text-2xl mt-3">Dine-In</h3><p class="text-sm text-gray-500 leading-relaxed mt-2">An unhurried evening in the main dining room — à la carte or tasting, warm Indian hospitality at every table.</p><p class="mt-4 text-xs font-extrabold tracking-widest uppercase group-hover:text-brass2">Select Experience →</p></div>
+    </article>
+    <article class="group bg-[#1E2B24] text-white rounded-[26px] overflow-hidden card-shadow reveal cursor-pointer" onclick="selectExperience('Chef’s Counter')">
+      <div class="h-52 overflow-hidden img-zoom"><img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover"></div>
+      <div class="p-6"><span class="text-[10px] tracking-widest uppercase bg-white/10 px-3 py-1 rounded-full font-bold text-brass">Limited Seats</span><h3 class="font-display text-2xl mt-3">Chef’s Counter</h3><p class="text-sm text-white/60 leading-relaxed mt-2">Sit at the pass. Watch the tandoor breathe, hear the story behind every plate, straight from the kitchen.</p><p class="mt-4 text-xs font-extrabold tracking-widest uppercase text-brass">Select Experience →</p></div>
+    </article>
+    <article class="group bg-white rounded-[26px] overflow-hidden card-shadow reveal cursor-pointer" onclick="selectExperience('Private Salon')">
+      <div class="h-52 overflow-hidden img-zoom"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover"></div>
+      <div class="p-6"><span class="text-[10px] tracking-widest uppercase bg-cream px-3 py-1 rounded-full font-bold">Celebrations</span><h3 class="font-display text-2xl mt-3">Private Dining</h3><p class="text-sm text-gray-500 leading-relaxed mt-2">A salon for family milestones, corporate evenings and intimate celebrations — custom menus on request.</p><p class="mt-4 text-xs font-extrabold tracking-widest uppercase group-hover:text-brass2">Enquire →</p></div>
+    </article>
+    <article class="group bg-white rounded-[26px] overflow-hidden card-shadow reveal cursor-pointer" onclick="selectExperience('Catering & Events')">
+      <div class="h-52 overflow-hidden img-zoom"><img src="https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover"></div>
+      <div class="p-6"><span class="text-[10px] tracking-widest uppercase bg-cream px-3 py-1 rounded-full font-bold">On Request</span><h3 class="font-display text-2xl mt-3">Catering & Events</h3><p class="text-sm text-gray-500 leading-relaxed mt-2">Takeaway, delivery & bespoke catering — confirm availability and edit this card to match your offering.</p><p class="mt-4 text-xs font-extrabold tracking-widest uppercase group-hover:text-brass2">Plan an Event →</p></div>
+    </article>
+  </div>
+
+  <!-- INTERACTIVE JOURNEY -->
+  <div class="mt-8 bg-cream rounded-[28px] p-6 md:p-10 grid lg:grid-cols-3 gap-8 reveal">
+    <div><p class="eyebrow text-brass2">The Tasting Journey</p><h3 class="font-display text-3xl leading-tight mt-2">Seven courses.<br>One unfolding story.</h3><p class="text-sm text-gray-500 mt-3 leading-relaxed">Tap each course to preview the arc of the evening — from first smoke to final sweetness.</p><div class="flex gap-2 mt-6 flex-wrap" id="journeyDots"></div></div>
+    <div class="lg:col-span-2 bg-white rounded-3xl overflow-hidden flex flex-col md:flex-row card-shadow">
+      <img id="journeyImg" src="https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=1000&auto=format&fit=crop" class="md:w-[45%] h-56 md:h-auto object-cover transition-all duration-500">
+      <div class="p-7 flex-1"><p id="journeyStep" class="text-[10px] tracking-[0.3em] uppercase text-brass2 font-extrabold">Course 01 / 07</p><h4 id="journeyTitle" class="font-display text-3xl mt-2">Arrival & Smoke</h4><p id="journeyDesc" class="text-sm text-gray-500 leading-relaxed mt-3">A warm welcome, house bread from the tandoor, smoked butter and the first whisper of spice.</p><div class="flex gap-2 mt-6"><button onclick="prevJourney()" class="w-11 h-11 rounded-full border flex items-center justify-center hover:bg-black hover:text-white transition">←</button><button onclick="nextJourney()" class="w-11 h-11 rounded-full bg-black text-white flex items-center justify-center hover:bg-brass transition">→</button><a href="#reserve" class="ml-auto bg-brass text-white px-5 py-3 rounded-full text-[11px] tracking-widest uppercase font-bold self-center">Book This Journey</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES / PRICING -->
+<section id="packages" class="bg-[#F3EDE2] py-20 md:py-24 px-5 md:px-10">
+  <div class="max-w-[1400px] mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 reveal">
+      <div><p class="eyebrow text-brass2">04 — Tasting & Packages</p><h2 class="font-display text-[42px] md:text-[56px] font-light leading-none mt-3">Evenings, composed<br>like <em class="text-clay">poetry.</em></h2></div>
+      <div class="flex bg-white p-1 rounded-full self-start shadow"><button id="lunchBtn" onclick="setPackageMode('lunch')" class="px-6 py-2.5 rounded-full text-xs tracking-widest uppercase font-bold bg-black text-white transition">Lunch</button><button id="dinnerBtn" onclick="setPackageMode('dinner')" class="px-6 py-2.5 rounded-full text-xs tracking-widest uppercase font-bold transition">Dinner</button></div>
+    </div>
+    <p class="text-xs text-gray-500 mt-3 reveal">✦ No prices have been invented. Each card has an editable price field ready for your verified pricing.</p>
+
+    <div class="grid lg:grid-cols-3 gap-5 mt-10">
+      <div class="bg-white rounded-[28px] p-8 card-shadow reveal flex flex-col">
+        <p class="eyebrow text-gray-400">The Discovery</p><p class="font-display text-5xl mt-4" id="price1">Add Price</p><p class="text-xs text-gray-400 mt-1">per guest • <span class="pkg-time">Lunch • 5 Courses</span></p>
+        <div class="line my-6"></div>
+        <ul class="space-y-3 text-sm text-gray-600 flex-1"><li>✓ &nbsp;5-course seasonal tasting</li><li>✓ &nbsp;Vegetarian & non-veg paths</li><li>✓ &nbsp;House breads & accompaniments</li><li>✓ &nbsp;Add inclusions you offer</li></ul>
+        <button onclick="choosePackage('The Discovery')" class="mt-8 w-full border-2 border-black py-3.5 rounded-full text-xs tracking-widest uppercase font-extrabold hover:bg-black hover:text-white transition">Choose Discovery</button>
+      </div>
+      <div class="bg-[#131110] text-white rounded-[28px] p-8 card-shadow reveal relative overflow-hidden flex flex-col scale-[1.02]">
+        <span class="absolute top-5 right-5 bg-brass text-white text-[10px] tracking-widest uppercase font-bold px-3 py-1.5 rounded-full">Most Reserved</span>
+        <p class="eyebrow text-brass">The Signature</p><p class="font-display text-5xl mt-4" id="price2">Add Price</p><p class="text-xs text-white/50 mt-1">per guest • <span class="pkg-time">Lunch • 7 Courses</span></p>
+        <div class="line my-6 opacity-60"></div>
+        <ul class="space-y-3 text-sm text-white/80 flex-1"><li>✓ &nbsp;7-course chef’s tasting journey</li><li>✓ &nbsp;Chef’s counter upgrade (on request)</li><li>✓ &nbsp;Regional bread & biryani course</li><li>✓ &nbsp;Dessert & petit fours finale</li><li>✓ &nbsp;Add wine / pairing if offered</li></ul>
+        <button onclick="choosePackage('The Signature')" class="mt-8 w-full bg-brass py-3.5 rounded-full text-xs tracking-widest uppercase font-extrabold hover:bg-white hover:text-black transition">Choose Signature →</button>
+      </div>
+      <div class="bg-white rounded-[28px] p-8 card-shadow reveal flex flex-col">
+        <p class="eyebrow text-gray-400">The Private Salon</p><p class="font-display text-5xl mt-4">Enquire</p><p class="text-xs text-gray-400 mt-1">up to [Add Capacity] guests • Custom Menu</p>
+        <div class="line my-6"></div>
+        <ul class="space-y-3 text-sm text-gray-600 flex-1"><li>✓ &nbsp;Private room & dedicated host</li><li>✓ &nbsp;Custom menu with our chef</li><li>✓ &nbsp;Celebrations & corporate evenings</li><li>✓ &nbsp;Add AV / décor if available</li></ul>
+        <button onclick="choosePackage('Private Salon')" class="mt-8 w-full border-2 border-black py-3.5 rounded-full text-xs tracking-widest uppercase font-extrabold hover:bg-black hover:text-white transition">Enquire Now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="py-20 md:py-28 px-5 md:px-10 max-w-[1400px] mx-auto">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 reveal">
+    <div><p class="eyebrow text-brass2">05 — Gallery & Ambience</p><h2 class="font-display text-[42px] md:text-[56px] font-light leading-none mt-3">Moments, plated<br>& <em>remembered.</em></h2></div>
+    <div class="flex gap-2" id="galleryFilters">
+      <button onclick="filterGallery('all',this)" class="gal-btn bg-black text-white px-5 py-2.5 rounded-full text-[11px] tracking-widest uppercase font-bold">All</button>
+      <button onclick="filterGallery('food',this)" class="gal-btn border px-5 py-2.5 rounded-full text-[11px] tracking-widest uppercase font-bold">Food</button>
+      <button onclick="filterGallery('space',this)" class="gal-btn border px-5 py-2.5 rounded-full text-[11px] tracking-widest uppercase font-bold">Space</button>
+      <button onclick="filterGallery('people',this)" class="gal-btn border px-5 py-2.5 rounded-full text-[11px] tracking-widest uppercase font-bold">People</button>
+    </div>
+  </div>
+
+  <div id="galleryGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
+    <!-- items injected pattern via html for SEO -->
+    <figure class="gal-item img-zoom relative rounded-[24px] overflow-hidden h-[280px] lg:h-[340px] cursor-pointer reveal" data-cat="food" onclick="openLightbox(0)"><img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover"><figcaption class="absolute inset-x-3 bottom-3 bg-white/90 backdrop-blur rounded-xl px-4 py-3 flex justify-between items-center"><span class="font-display">Slow-Cooked Curries</span><span>↗</span></figcaption></figure>
+    <figure class="gal-item img-zoom relative rounded-[24px] overflow-hidden h-[280px] lg:h-[340px] cursor-pointer reveal" data-cat="space" onclick="openLightbox(1)"><img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover"><figcaption class="absolute inset-x-3 bottom-3 bg-white/90 backdrop-blur rounded-xl px-4 py-3 flex justify-between"><span class="font-display">Evening Ambience</span><span>↗</span></figcaption></figure>
+    <figure class="gal-item img-zoom relative rounded-[24px] overflow-hidden h-[280px] lg:h-[340px] cursor-pointer reveal" data-cat="people" onclick="openLightbox(2)"><img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover"><figcaption class="absolute inset-x-3 bottom-3 bg-white/90 backdrop-blur rounded-xl px-4 py-3 flex justify-between"><span class="font-display">In the Kitchen</span><span>↗</span></figcaption></figure>
+    <figure class="gal-item img-zoom relative rounded-[24px] overflow-hidden h-[280px] lg:h-[340px] cursor-pointer reveal" data-cat="food" onclick="openLightbox(3)"><img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover"><figcaption class="absolute inset-x-3 bottom-3 bg-white/90 backdrop-blur rounded-xl px-4 py-3 flex justify-between"><span class="font-display">Dum Biryani</span><span>↗</span></figcaption></figure>
+    <figure class="gal-item img-zoom relative rounded-[24px] overflow-hidden h-[280px] lg:h-[340px] cursor-pointer reveal" data-cat="food" onclick="openLightbox(4)"><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover"><figcaption class="absolute inset-x-3 bottom-3 bg-white/90 backdrop-blur rounded-xl px-4 py-3 flex justify-between"><span class="font-display">From the Grill</span><span>↗</span></figcaption></figure>
+    <figure class="gal-item img-zoom relative rounded-[24px] overflow-hidden h-[280px] lg:h-[340px] cursor-pointer reveal" data-cat="space" onclick="openLightbox(5)"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover"><figcaption class="absolute inset-x-3 bottom-3 bg-white/90 backdrop-blur rounded-xl px-4 py-3 flex justify-between"><span class="font-display">Plated with Intent</span><span>↗</span></figcaption></figure>
+    <figure class="gal-item img-zoom relative rounded-[24px] overflow-hidden h-[280px] lg:h-[340px] cursor-pointer reveal" data-cat="people" onclick="openLightbox(6)"><img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover"><figcaption class="absolute inset-x-3 bottom-3 bg-white/90 backdrop-blur rounded-xl px-4 py-3 flex justify-between"><span class="font-display">Chef’s Hands</span><span>↗</span></figcaption></figure>
+    <figure class="gal-item relative rounded-[24px] overflow-hidden h-[280px] lg:h-[340px] cursor-pointer reveal bg-deep text-white p-6 flex flex-col justify-between" data-cat="space" onclick="document.getElementById('reserve').scrollIntoView({behavior:'smooth'})"><p class="eyebrow text-brass">Visit Us</p><p class="font-display text-3xl leading-tight font-light">Your table is<br>waiting.</p><span class="bg-brass text-white text-center py-3 rounded-full text-xs tracking-widest uppercase font-bold">Reserve Now →</span></figure>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="bg-white py-20 px-5 md:px-10 border-y border-[#EDE6D6]">
+  <div class="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-4 reveal">
+      <p class="eyebrow text-brass2">06 — Guest Voices</p>
+      <h2 class="font-display text-[42px] leading-tight font-light mt-3">Real reviews belong here.</h2>
+      <p class="text-sm text-gray-500 leading-relaxed mt-4">No testimonials, names or ratings have been fabricated. Add your verified Google / Zomato / TripAdvisor reviews, or let guests share one below — it will appear instantly as a preview.</p>
+      <div class="bg-cream rounded-3xl p-6 mt-6">
+        <p class="text-[10px] tracking-widest uppercase font-bold text-gray-400">Your Verified Rating</p>
+        <p class="font-display text-5xl mt-2">— <span class="text-lg text-gray-400">/ 5</span></p>
+        <p class="text-xs text-gray-500 mt-2">Add rating & review count from your official profile.</p>
+        <div class="flex gap-1 mt-3 text-brass text-xl">☆ ☆ ☆ ☆ ☆</div>
+      </div>
+    </div>
+    <div class="lg:col-span-8">
+      <div id="reviewList" class="grid md:grid-cols-2 gap-4">
+        <div class="border-2 border-dashed border-[#E8E0D1] rounded-[24px] p-7 flex flex-col items-center justify-center text-center min-h-[220px]"><span class="text-3xl">✦</span><p class="font-display text-xl mt-3">Your first verified review<br>will shine here</p><p class="text-xs text-gray-400 mt-2">Paste a real guest review with name & source.</p></div>
+        <div class="border-2 border-dashed border-[#E8E0D1] rounded-[24px] p-7 flex flex-col items-center justify-center text-center min-h-[220px]"><span class="text-3xl">✦</span><p class="font-display text-xl mt-3">Editable review card</p><p class="text-xs text-gray-400 mt-2">Ready for your genuine testimonials.</p></div>
+      </div>
+      <form onsubmit="addReview(event)" class="mt-5 bg-ivory border border-[#EDE6D6] rounded-[24px] p-6 reveal">
+        <p class="font-display text-2xl">Share your experience <span class="text-sm text-gray-400 font-body">— preview instantly</span></p>
+        <div class="grid md:grid-cols-3 gap-3 mt-4">
+          <input id="revName" required placeholder="Your name" class="border rounded-full px-5 py-3 text-sm bg-white">
+          <select id="revRating" class="border rounded-full px-5 py-3 text-sm bg-white"><option value="5">★★★★★ Excellent</option><option value="4">★★★★☆ Very Good</option><option value="3">★★★☆☆ Good</option></select>
+          <select id="revOccasion" class="border rounded-full px-5 py-3 text-sm bg-white"><option>Anniversary</option><option>Family Dinner</option><option>Business</option><option>Celebration</option><option>Date Night</option></select>
+        </div>
+        <textarea id="revText" required rows="2" placeholder="What did you love? The biryani, the service, the ambience..." class="w-full border rounded-2xl px-5 py-3 text-sm bg-white mt-3"></textarea>
+        <button class="mt-3 bg-black text-white px-6 py-3 rounded-full text-xs tracking-widest uppercase font-bold hover:bg-brass transition">Publish Preview →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATION + CONTACT -->
+<section id="reserve" class="py-20 md:py-28 px-5 md:px-10 bg-[#131110] text-white relative grain overflow-hidden">
+  <div class="max-w-[1400px] mx-auto">
+    <div class="grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-5 reveal">
+        <p class="eyebrow text-brass">07 — Reservations & Contact</p>
+        <h2 class="font-display text-[48px] md:text-[64px] font-light leading-[0.95] mt-4">Reserve your<br><em class="text-brass">evening.</em></h2>
+        <p class="text-white/60 text-sm leading-relaxed mt-5 max-w-md">Complete the form and receive an instant on-screen confirmation with a booking reference. Replace the contact details beside with your verified information — nothing here is invented.</p>
+
+        <div class="space-y-3 mt-8">
+          <a href="tel:+910000000000" class="flex items-center gap-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl p-4 transition group"><span class="w-11 h-11 rounded-full bg-brass flex items-center justify-center shrink-0">☎</span><div class="flex-1"><p class="text-[10px] tracking-widest uppercase text-white/50 font-bold">Call to Reserve — Tap to Call</p><p class="font-display text-xl">[ Add Phone Number ]</p></div><span class="group-hover:translate-x-1 transition">→</span></a>
+          <div class="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4"><span class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center shrink-0">✉</span><div><p class="text-[10px] tracking-widest uppercase text-white/50 font-bold">Email</p><p class="font-semibold text-sm">[ Add Email Address ]</p></div></div>
+          <div class="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4"><span class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center shrink-0">◉</span><div><p class="text-[10px] tracking-widest uppercase text-white/50 font-bold">Address</p><p class="font-semibold text-sm">[ Add Street Address, City, PIN ]</p></div></div>
+          <div class="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4"><span class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center shrink-0">◷</span><div class="flex-1"><p class="text-[10px] tracking-widest uppercase text-white/50 font-bold">Opening Hours</p><p class="font-semibold text-sm">[ Add Hours — e.g. Mon–Sun ]</p></div><span class="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1 rounded-full font-bold uppercase tracking-widest">Add Status</span></div>
+        </div>
+
+        <div class="rounded-[24px] overflow-hidden mt-6 h-[190px] relative border border-white/10">
+          <iframe title="Map placeholder" src="https://www.openstreetmap.org/export/embed.html?bbox=77.20%2C28.60%2C77.24%2C28.63&layer=mapnik" class="w-full h-full grayscale invert-[0.92] contrast-[0.9] opacity-80"></iframe>
+          <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur text-white text-[10px] tracking-widest uppercase font-bold px-3 py-2 rounded-full">Map — Replace with your Google Maps embed</span>
+        </div>
+        <div class="flex gap-2 mt-5">
+          <a href="#" class="flex-1 text-center border border-white/15 py-3 rounded-full text-[11px] tracking-widest uppercase font-bold hover:bg-white hover:text-black transition">Instagram</a>
+          <a href="#" class="flex-1 text-center border border-white/15 py-3 rounded-full text-[11px] tracking-widest uppercase font-bold hover:bg-white hover:text-black transition">Facebook</a>
+          <a href="#" class="flex-1 text-center border border-white/15 py-3 rounded-full text-[11px] tracking-widest uppercase font-bold hover:bg-white hover:text-black transition">WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 reveal">
+        <form id="resForm" onsubmit="submitReservation(event)" class="bg-white text-black rounded-[30px] p-6 md:p-9 shadow-2xl">
+          <div class="flex items-center justify-between flex-wrap gap-3">
+            <div><p class="eyebrow text-brass2">Book a Table</p><h3 class="font-display text-3xl mt-1">Your details</h3></div>
+            <div class="flex items-center gap-2 bg-cream rounded-full px-4 py-2"><button type="button" onclick="changeGuests(-1)" class="w-7 h-7 rounded-full bg-white shadow font-bold">−</button><span class="text-sm font-extrabold min-w-[70px] text-center"><span id="guestCount">2</span> Guests</span><button type="button" onclick="changeGuests(1)" class="w-7 h-7 rounded-full bg-black text-white shadow font-bold">+</button></div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4 mt-7">
+            <div><label class="text-[10px] tracking-widest uppercase font-bold text-gray-400">Full Name *</label><input id="resName" required placeholder="e.g. Aarav Sharma" class="w-full mt-1.5 border rounded-full px-5 py-3.5 text-sm bg-ivory"></div>
+            <div><label class="text-[10px] tracking-widest uppercase font-bold text-gray-400">Phone *</label><input id="resPhone" required type="tel" placeholder="+91 ..." class="w-full mt-1.5 border rounded-full px-5 py-3.5 text-sm bg-ivory"></div>
+            <div><label class="text-[10px] tracking-widest uppercase font-bold text-gray-400">Date *</label><input id="resDate" required type="date" class="w-full mt-1.5 border rounded-full px-5 py-3.5 text-sm bg-ivory"></div>
+            <div><label class="text-[10px] tracking-widest uppercase font-bold text-gray-400">Occasion</label><select id="resOccasion" class="w-full mt-1.5 border rounded-full px-5 py-3.5 text-sm bg-ivory"><option>Just Dinner</option><option>Birthday</option><option>Anniversary</option><option>Business Dinner</option><option>Family Celebration</option><option>Date Night</option></select></div>
+          </div>
+
+          <p class="text-[10px] tracking-widest uppercase font-bold text-gray-400 mt-7 mb-3">Preferred Time</p>
+          <div class="flex flex-wrap gap-2" id="timeSlots">
+            <button type="button" onclick="setTime('12:30 PM',this)" class="time-pill border px-5 py-2.5 rounded-full text-xs font-bold">12:30 PM</button>
+            <button type="button" onclick="setTime('1:30 PM',this)" class="time-pill border px-5 py-2.5 rounded-full text-xs font-bold">1:30 PM</button>
+            <button type="button" onclick="setTime('7:00 PM',this)" class="time-pill active border px-5 py-2.5 rounded-full text-xs font-bold">7:00 PM</button>
+            <button type="button" onclick="setTime('8:00 PM',this)" class="time-pill border px-5 py-2.5 rounded-full text-xs font-bold">8:00 PM</button>
+            <button type="button" onclick="setTime('9:00 PM',this)" class="time-pill border px-5 py-2.5 rounded-full text-xs font-bold">9:00 PM</button>
+            <button type="button" onclick="setTime('10:00 PM',this)" class="time-pill border px-5 py-2.5 rounded-full text-xs font-bold">10:00 PM</button>
+          </div>
+
+          <p class="text-[10px] tracking-widest uppercase font-bold text-gray-400 mt-7 mb-3">Seating Preference</p>
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3" id="seatGrid">
+            <button type="button" onclick="setSeat('Dining Room',this)" class="seat-card active text-left border rounded-2xl p-4 transition"><p class="font-display text-lg leading-tight">Dining Room</p><p class="text-[11px] opacity-60 mt-1">Classic & warm</p></button>
+            <button type="button" onclick="setSeat('Chef’s Counter',this)" class="seat-card text-left border rounded-2xl p-4 transition"><p class="font-display text-lg leading-tight">Chef’s Counter</p><p class="text-[11px] opacity-60 mt-1">Watch the kitchen</p></button>
+            <button type="button" onclick="setSeat('Private Salon',this)" class="seat-card text-left border rounded-2xl p-4 transition"><p class="font-display text-lg leading-tight">Private Salon</p><p class="text-[11px] opacity-60 mt-1">For celebrations</p></button>
+            <button type="button" onclick="setSeat('Terrace',this)" class="seat-card text-left border rounded-2xl p-4 transition"><p class="font-display text-lg leading-tight">Terrace</p><p class="text-[11px] opacity-60 mt-1">Under the sky</p></button>
+          </div>
+
+          <div class="mt-5"><label class="text-[10px] tracking-widest uppercase font-bold text-gray-400">Special Requests</label><textarea id="resNotes" rows="2" placeholder="Allergies, window seat, cake, quiet corner..." class="w-full mt-1.5 border rounded-2xl px-5 py-3.5 text-sm bg-ivory"></textarea></div>
+
+          <div class="flex flex-col sm:flex-row gap-3 mt-7">
+            <button class="flex-1 bg-[#131110] text-white py-4 rounded-full text-xs tracking-[0.2em] uppercase font-extrabold hover:bg-brass transition">Confirm Reservation →</button>
+            <a href="tel:+910000000000" class="flex-1 text-center border-2 border-black py-4 rounded-full text-xs tracking-[0.2em] uppercase font-extrabold hover:bg-black hover:text-white transition">☎ &nbsp;Call Instead</a>
+          </div>
+          <p class="text-center text-[11px] text-gray-400 mt-4">Instant on-screen confirmation • No advance needed unless you specify • Edit this line with your policy</p>
+        </form>
+
+        <!-- FAQ -->
+        <div class="mt-5 space-y-3">
+          <div class="bg-white/5 border border-white/10 rounded-2xl overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex justify-between items-center px-6 py-4 text-left font-display text-lg">Do you offer a vegetarian tasting menu? <span>+</span></button><div class="faq-content px-6"><p class="pb-5 text-sm text-white/60 leading-relaxed">Add your verified answer here — e.g. yes, a dedicated vegetarian and Jain tasting path is available on request.</p></div></div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex justify-between items-center px-6 py-4 text-left font-display text-lg">Can I book for a large group or event? <span>+</span></button><div class="faq-content px-6"><p class="pb-5 text-sm text-white/60 leading-relaxed">Add your group capacity, private dining and catering policy here.</p></div></div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex justify-between items-center px-6 py-4 text-left font-display text-lg">What is your cancellation policy? <span>+</span></button><div class="faq-content px-6"><p class="pb-5 text-sm text-white/60 leading-relaxed">Add your verified cancellation and no-show policy here.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-[#0E0C0B] text-white px-5 md:px-10 pt-16 pb-8">
+  <div class="max-w-[1400px] mx-auto">
+    <div class="flex flex-col lg:flex-row justify-between gap-10 pb-12 border-b border-white/10">
+      <div class="max-w-sm"><p class="font-logo text-4xl tracking-[0.2em]">ATELIER <span class="text-brass">INDIA</span></p><p class="text-white/50 text-sm leading-relaxed mt-4">Replace ATELIER INDIA with your exact restaurant name and this footer with your verified brand line. Every detail on this page is ready to be made truly yours.</p><div class="flex gap-2 mt-5"><span class="border border-white/15 px-4 py-2 rounded-full text-[10px] tracking-widest uppercase font-bold">Instagram ↗</span><span class="border border-white/15 px-4 py-2 rounded-full text-[10px] tracking-widest uppercase font-bold">Facebook ↗</span><span class="border border-white/15 px-4 py-2 rounded-full text-[10px] tracking-widest uppercase font-bold">YouTube ↗</span></div></div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-10 text-sm">
+        <div><p class="eyebrow text-brass mb-4">Explore</p><ul class="space-y-2.5 text-white/60"><li><a href="#about" class="hover:text-white">Our Story</a></li><li><a href="#menu" class="hover:text-white">Signature Menu</a></li><li><a href="#gallery" class="hover:text-white">Gallery</a></li><li><a href="#packages" class="hover:text-white">Tasting Packages</a></li></ul></div>
+        <div><p class="eyebrow text-brass mb-4">Visit</p><ul class="space-y-2.5 text-white/60"><li>[ Add Address ]</li><li>[ Add City ]</li><li><a href="tel:+910000000000" class="hover:text-brass">[ Add Phone ]</a></li><li>[ Add Email ]</li></ul></div>
+        <div><p class="eyebrow text-brass mb-4">Hours</p><ul class="space-y-2.5 text-white/60"><li>[ Add Lunch Hours ]</li><li>[ Add Dinner Hours ]</li><li>[ Add Weekly Off ]</li><li><a href="#reserve" class="text-brass font-bold">Reserve a Table →</a></li></ul></div>
+      </div>
+    </div>
+    <div class="pt-6 flex flex-col md:flex-row justify-between gap-3 text-[11px] tracking-widest uppercase text-white/35 font-bold"><span>© 2026 [Your Restaurant Name] — All Rights Reserved</span><span>Crafted with fire, patience & pride in India</span></div>
+  </div>
+</footer>
+
+<!-- FLOATING -->
+<a href="#reserve" class="fixed bottom-5 right-5 z-40 md:hidden bg-brass text-white shadow-2xl shadow-black/30 px-6 py-3.5 rounded-full text-xs tracking-widest uppercase font-extrabold">Reserve a Table</a>
+<button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="hidden md:flex fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-white shadow-xl border items-center justify-center hover:bg-black hover:text-white transition">↑</button>
+
+<!-- TASTING DRAWER -->
+<div id="drawerOverlay" onclick="closeDrawer()" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[70]"></div>
+<aside id="drawer" class="fixed top-0 right-0 h-full w-full max-w-[420px] bg-white z-[80] shadow-2xl translate-x-full transition-transform duration-500 flex flex-col">
+  <div class="p-6 flex items-center justify-between border-b"><div><p class="eyebrow text-brass2">Your Selection</p><h3 class="font-display text-3xl mt-1">My Tasting List</h3></div><button onclick="closeDrawer()" class="w-11 h-11 rounded-full border flex items-center justify-center text-xl hover:bg-black hover:text-white transition">×</button></div>
+  <div id="drawerList" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
+  <div class="p-5 border-t bg-ivory"><p class="text-xs text-gray-500 leading-relaxed">Share this list at your table or add it to your reservation notes. Prices will be confirmed from the verified menu.</p><button onclick="closeDrawer();document.getElementById('reserve').scrollIntoView({behavior:'smooth'})" class="w-full bg-black text-white py-4 rounded-full text-xs tracking-widest uppercase font-extrabold mt-4 hover:bg-brass transition">Reserve with this List →</button></div>
+</aside>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="hidden fixed inset-0 z-[90] bg-black/95 backdrop-blur flex items-center justify-center p-4">
+  <button onclick="closeLightbox()" class="absolute top-5 right-5 w-12 h-12 rounded-full bg-white/10 text-white text-2xl hover:bg-brass transition z-10">×</button>
+  <button onclick="prevLb()" class="absolute left-4 md:left-8 w-12 h-12 rounded-full bg-white/10 text-white text-xl hover:bg-brass transition z-10">←</button>
+  <div class="max-w-4xl w-full text-center"><img id="lbImg" src="" class="lightbox-img w-full max-h-[75vh] object-contain rounded-[24px] shadow-2xl"><p id="lbCap" class="text-white font-display text-2xl mt-5"></p><p id="lbCount" class="text-white/40 text-xs tracking-widest uppercase mt-1"></p></div>
+  <button onclick="nextLb()" class="absolute right-4 md:right-8 w-12 h-12 rounded-full bg-white/10 text-white text-xl hover:bg-brass transition z-10">→</button>
+</div>
+
+<!-- VIDEO MODAL -->
+<div id="videoModal" class="hidden fixed inset-0 z-[90] bg-black/95 flex items-center justify-center p-4">
+  <button onclick="closeVideo()" class="absolute top-5 right-5 w-12 h-12 rounded-full bg-white/10 text-white text-2xl z-10">×</button>
+  <div class="max-w-4xl w-full"><div class="rounded-[24px] overflow-hidden bg-black aspect-video flex items-center justify-center relative"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1600&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-70"><div class="relative text-center text-white p-8"><p class="eyebrow text-brass">Brand Film Placeholder</p><p class="font-display text-4xl mt-3">Add your restaurant film here</p><p class="text-white/60 text-sm mt-2">Replace this with your YouTube / Vimeo embed.</p></div></div></div>
+</div>
+
+<!-- CONFIRMATION MODAL -->
+<div id="confirmModal" class="hidden fixed inset-0 z-[95] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+  <div class="modal bg-white rounded-[30px] max-w-md w-full p-8 text-center shadow-2xl">
+    <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto">✓</div>
+    <p class="eyebrow text-brass2 mt-5">Reservation Received</p>
+    <h3 class="font-display text-3xl mt-2">We can’t wait to<br>host you.</h3>
+    <div id="confirmDetails" class="bg-ivory rounded-2xl p-5 mt-5 text-left text-sm space-y-1.5"></div>
+    <p class="text-[11px] text-gray-400 mt-4">Please save your reference. The restaurant will confirm via phone — connect this form to your booking system / WhatsApp to go live.</p>
+    <button onclick="closeConfirm()" class="w-full bg-black text-white py-3.5 rounded-full text-xs tracking-widest uppercase font-extrabold mt-5 hover:bg-brass transition">Done</button>
+  </div>
+</div>
+
+<div id="toastWrap" class="fixed bottom-24 md:bottom-8 left-1/2 -translate-x-1/2 z-[96] pointer-events-none"></div>
+
+<script>
+/* DATA — Replace dishes & descriptions with your verified menu. No prices fabricated. */
+const MENU=[
+{id:1,name:"Charred Paneer Tikka",desc:"Smoked tomato chutney, charred peppers, mint dust — replace with your verified description.",cat:"starters",diet:"veg",spice:2,tag:"Signature",img:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?q=80&w=900&auto=format&fit=crop"},
+{id:2,name:"Old Delhi Chicken Tikka",desc:"Overnight marinade, tandoor smoke, butter glaze — replace with your verified description.",cat:"starters",diet:"nonveg",spice:3,tag:"Tandoor",img:"https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?q=80&w=900&auto=format&fit=crop"},
+{id:3,name:"Crisp Samosa, Reimagined",desc:"Flaky pastry, spiced filling, tamarind & yoghurt — replace with your verified description.",cat:"starters",diet:"vegan",spice:1,tag:"Classic",img:"https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=900&auto=format&fit=crop"},
+{id:4,name:"Hyderabadi Dum Biryani",desc:"Aged basmati, saffron, sealed & slow-cooked — replace with your verified description.",cat:"mains",diet:"nonveg",spice:3,tag:"Must Try",img:"https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=900&auto=format&fit=crop"},
+{id:5,name:"Slow-Braised Signature Curry",desc:"Hand-ground masalas, gentle heat, royal finish — replace with your verified description.",cat:"mains",diet:"nonveg",spice:2,tag:"Chef's Pick",img:"https://images.unsplash.com/photo-1585937421612-70a008356fbe?q=80&w=900&auto=format&fit=crop"},
+{id:6,name:"Seasonal Vegetable Kofta",desc:"Garden vegetables, cashew-tomato makhani — replace with your verified description.",cat:"mains",diet:"veg",spice:1,tag:"Seasonal",img:"https://images.unsplash.com/photo-1567188040759-fb8a883dc6d6?q=80&w=900&auto=format&fit=crop"},
+{id:7,name:"Tandoori Breads & Naan Basket",desc:"Butter naan, garlic naan, laccha paratha — replace with your verified description.",cat:"breads",diet:"veg",spice:0,tag:"To Share",img:"https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=900&auto=format&fit=crop"},
+{id:8,name:"Saffron Sweet Finale",desc:"A delicate regional dessert, reimagined — replace with your verified description.",cat:"desserts",diet:"veg",spice:0,tag:"Finale",img:"https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=900&auto=format&fit=crop"},
+];
+const GALLERY=[
+{src:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?q=80&w=1600&auto=format&fit=crop",cap:"Slow-Cooked Curries"},
+{src:"https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1600&auto=format&fit=crop",cap:"Evening Ambience"},
+{src:"https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=1600&auto=format&fit=crop",cap:"In the Kitchen"},
+{src:"https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=1600&auto=format&fit=crop",cap:"Dum Biryani"},
+{src:"https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?q=80&w=1600&auto=format&fit=crop",cap:"From the Grill"},
+{src:"https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1600&auto=format&fit=crop",cap:"Plated with Intent"},
+{src:"https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?q=80&w=1600&auto=format&fit=crop",cap:"Chef's Hands"},
+];
+const JOURNEY=[
+{step:"Course 01 / 07",title:"Arrival & Smoke",desc:"A warm welcome, house bread from the tandoor, smoked butter and the first whisper of spice.",img:"https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=1000&auto=format&fit=crop"},
+{step:"Course 02 / 07",title:"From the Tandoor",desc:"Char, blister and marinade — the clay oven at its most expressive.",img:"https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?q=80&w=1000&auto=format&fit=crop"},
+{step:"Course 03 / 07",title:"The Regional Heart",desc:"A curry that carries a place with it — researched, respected, refined.",img:"https://images.unsplash.com/photo-1585937421612-70a008356fbe?q=80&w=1000&auto=format&fit=crop"},
+{step:"Course 04 / 07",title:"Dum & Basmati",desc:"Sealed, slow and fragrant — biryani opened at the table.",img:"https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=1000&auto=format&fit=crop"},
+{step:"Course 05 / 07",title:"Fire & Earth",desc:"Seasonal produce, stone-ground spice, restraint over heat.",img:"https://images.unsplash.com/photo-1567188040759-fb8a883dc6d6?q=80&w=1000&auto=format&fit=crop"},
+{step:"Course 06 / 07",title:"The Sweet Pause",desc:"Saffron, milk and memory — dessert as a quiet celebration.",img:"https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=1000&auto=format&fit=crop"},
+{step:"Course 07 / 07",title:"Farewell, Warmly",desc:"Petit fours, spiced tea and an invitation to return.",img:"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1000&auto=format&fit=crop"},
+];
+
+let curCat='all',curDiet='all',tasting=[],selectedTime='7:00 PM',selectedSeat='Dining Room',guests=2,journeyIdx=0,lbIdx=0,pkgMode='lunch';
+
+function spiceDots(n){if(n===0)return '<span class="text-gray-300 tracking-widest">— No Heat</span>';let s='';for(let i=1;i<=3;i++)s+=`<span class="${i<=n?'text-red-500':'text-gray-200'}">●</span>`;return s+`<span class="ml-1 text-[10px] font-bold ${n>=3?'text-red-500':'text-gray-400'}">${n===1?'MILD':n===2?'MEDIUM':'HOT'}</span>`}
+function setCat(c,el){curCat=c;document.querySelectorAll('#catTabs .menu-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderMenu()}
+function setDiet(d,el){curDiet=d;document.querySelectorAll('.diet-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderMenu()}
+function renderMenu(){
+  const q=(document.getElementById('searchInput').value||'').toLowerCase();
+  const sort=document.getElementById('sortSelect').value;
+  let list=MENU.filter(m=>(curCat==='all'||m.cat===curCat)&&(curDiet==='all'||m.diet===curDiet)&&(m.name.toLowerCase().includes(q)||m.desc.toLowerCase().includes(q)));
+  if(sort==='name')list.sort((a,b)=>a.name.localeCompare(b.name));
+  if(sort==='spice-low')list.sort((a,b)=>a.spice-b.spice);
+  if(sort==='spice-high')list.sort((a,b)=>b.spice-a.spice);
+  document.getElementById('resultCount').textContent=list.length;
+  document.getElementById('noResult').classList.toggle('hidden',list.length>0);
+  document.getElementById('menuGrid').innerHTML=list.map(m=>{
+    const inList=tasting.includes(m.id);
+    return `<article class="group bg-white text-black rounded-[24px] overflow-hidden shadow-xl hover:-translate-y-1.5 transition duration-500">
+      <div class="relative h-52 overflow-hidden img-zoom"><img loading="lazy" src="${m.img}" class="w-full h-full object-cover"><span class="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full text-[10px] tracking-widest uppercase font-extrabold">${m.tag}</span><span class="absolute top-3 right-3 ${m.diet==='nonveg'?'bg-red-50 text-red-600 border-red-200':m.diet==='vegan'?'bg-emerald-50 text-emerald-700 border-emerald-200':'bg-green-50 text-green-700 border-green-200'} border px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase">${m.diet==='nonveg'?'Non-Veg':m.diet}</span></div>
+      <div class="p-5"><div class="flex items-start justify-between gap-3"><h3 class="font-display text-[22px] leading-tight">${m.name}</h3><span class="shrink-0 bg-cream border border-dashed border-brass/50 text-brass2 text-[10px] font-extrabold tracking-wider px-2.5 py-1.5 rounded-full uppercase">Add Price</span></div>
+      <p class="text-[13px] text-gray-500 leading-relaxed mt-2 min-h-[40px]">${m.desc}</p>
+      <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-100"><span class="text-xs">${spiceDots(m.spice)}</span><button onclick="toggleTasting(${m.id})" class="${inList?'bg-emerald-600 text-white':'bg-black text-white hover:bg-brass'} px-4 py-2.5 rounded-full text-[10px] tracking-widest uppercase font-extrabold transition">${inList?'✓ In List':'＋ Add to Tasting'}</button></div></div></article>`}).join('');
+}
+function toggleTasting(id){if(tasting.includes(id)){tasting=tasting.filter(x=>x!==id);showToast('Removed from your tasting list')}else{tasting.push(id);showToast('Added — view “My Tasting” at the top')}updateTastingUI();renderMenu()}
+function updateTastingUI(){document.getElementById('tastingCount').textContent=tasting.length;const wrap=document.getElementById('drawerList');if(!tasting.length){wrap.innerHTML=`<div class="text-center py-16"><p class="text-4xl">✦</p><p class="font-display text-2xl mt-3">Your list is empty</p><p class="text-sm text-gray-400 mt-2">Add signature dishes from the menu to build your perfect evening.</p><button onclick="closeDrawer();document.getElementById('menu').scrollIntoView({behavior:'smooth'})" class="mt-5 bg-black text-white px-6 py-3 rounded-full text-xs tracking-widest uppercase font-bold">Explore Menu</button></div>`;return}wrap.innerHTML=tasting.map(id=>{const m=MENU.find(x=>x.id===id);return `<div class="flex gap-3 bg-ivory border rounded-2xl p-3 items-center"><img src="${m.img}" class="w-16 h-16 rounded-xl object-cover"><div class="flex-1"><p class="font-display text-lg leading-tight">${m.name}</p><p class="text-[11px] text-gray-400 uppercase tracking-wider font-bold mt-0.5">${m.tag} • Add Price</p></div><button onclick="toggleTasting(${m.id});updateTastingUI()" class="w-9 h-9 rounded-full border flex items-center justify-center hover:bg-red-50 hover:text-red-500">×</button></div>`}).join('')+`<button onclick="tasting=[];updateTastingUI();renderMenu();showToast('List cleared')" class="w-full text-center text-xs text-gray-400 font-bold tracking-widest uppercase py-2">Clear List</button>`}
+function openDrawer(){document.getElementById('drawer').classList.remove('translate-x-full');document.getElementById('drawerOverlay').classList.remove('hidden');updateTastingUI()}
+function closeDrawer(){document.getElementById('drawer').classList.add('translate-x-full');document.getElementById('drawerOverlay').classList.add('hidden')}
+
+/* Journey */
+function renderJourney(){const j=JOURNEY[journeyIdx];document.getElementById('journeyImg').src=j.img;document.getElementById('journeyStep').textContent=j.step;document.getElementById('journeyTitle').textContent=j.title;document.getElementById('journeyDesc').textContent=j.desc;document.getElementById('journeyDots').innerHTML=JOURNEY.map((_,i)=>`<button onclick="journeyIdx=${i};renderJourney()" class="px-3.5 py-2 rounded-full text-[11px] font-extrabold ${i===journeyIdx?'bg-black text-white':'bg-white border'} transition">0${i+1}</button>`).join('')}
+function nextJourney(){journeyIdx=(journeyIdx+1)%JOURNEY.length;renderJourney()}function prevJourney(){journeyIdx=(journeyIdx-1+JOURNEY.length)%JOURNEY.length;renderJourney()}
+
+/* Gallery / Lightbox */
+function filterGallery(cat,el){document.querySelectorAll('.gal-btn').forEach(b=>{b.classList.remove('bg-black','text-white')});el.classList.add('bg-black','text-white');document.querySelectorAll('.gal-item').forEach(it=>{it.style.display=(cat==='all'||it.dataset.cat===cat)?'block':'none'})}
+function openLightbox(i){lbIdx=i;updateLb();document.getElementById('lightbox').classList.remove('hidden');document.body.style.overflow='hidden'}
+function closeLightbox(){document.getElementById('lightbox').classList.add('hidden');document.body.style.overflow=''}
+function updateLb(){document.getElementById('lbImg').src=GALLERY[lbIdx].src;document.getElementById('lbCap').textContent=GALLERY[lbIdx].cap;document.getElementById('lbCount').textContent=(lbIdx+1)+' / '+GALLERY.length+' — Use ← → keys'}
+function nextLb(){lbIdx=(lbIdx+1)%GALLERY.length;updateLb()}function prevLb(){lbIdx=(lbIdx-1+GALLERY.length)%GALLERY.length;updateLb()}
+document.addEventListener('keydown',e=>{if(document.getElementById('lightbox').classList.contains('hidden'))return;if(e.key==='ArrowRight')nextLb();if(e.key==='ArrowLeft')prevLb();if(e.key==='Escape')closeLightbox()});
+
+/* Packages */
+function setPackageMode(m){pkgMode=m;document.getElementById('lunchBtn').className='px-6 py-2.5 rounded-full text-xs tracking-widest uppercase font-bold transition '+(m==='lunch'?'bg-black text-white':'');document.getElementById('dinnerBtn').className='px-6 py-2.5 rounded-full text-xs tracking-widest uppercase font-bold transition '+(m==='dinner'?'bg-black text-white':'');document.querySelectorAll('.pkg-time').forEach((el,i)=>el.textContent=(m==='lunch'?'Lunch':'Dinner')+(i===0?' • 5 Courses':' • 7 Courses'));showToast((m==='lunch'?'Lunch':'Dinner')+' tasting selected — add your verified timings & prices')}
+function choosePackage(name){showToast(name+' selected — complete your reservation below');document.getElementById('resNotes').value='Interested in: '+name+' ('+pkgMode+')';document.getElementById('reserve').scrollIntoView({behavior:'smooth'})}
+function selectExperience(name){selectedSeat=name.includes('Counter')?'Chef’s Counter':name.includes('Private')?'Private Salon':name;document.querySelectorAll('.seat-card').forEach(c=>c.classList.toggle('active',c.textContent.includes(selectedSeat.split(' ')[0])));showToast(name+' — pre-selected in the reservation form');setTimeout(()=>document.getElementById('reserve').scrollIntoView({behavior:'smooth'}),500)}
+
+/* Reservation */
+function changeGuests(d){guests=Math.min(20,Math.max(1,guests+d));document.getElementById('guestCount').textContent=guests}
+function setTime(t,el){selectedTime=t;document.querySelectorAll('.time-pill').forEach(b=>b.classList.remove('active'));el.classList.add('active')}
+function setSeat(s,el){selectedSeat=s;document.querySelectorAll('.seat-card').forEach(b=>b.classList.remove('active'));el.classList.add('active')}
+function submitReservation(e){e.preventDefault();const name=document.getElementById('resName').value.trim(),phone=document.getElementById('resPhone').value.trim(),date=document.getElementById('resDate').value;if(!name||!phone||!date){showToast('Please complete name, phone and date');return}const ref='AIR-'+Math.random().toString(36).slice(2,7).toUpperCase();const nice=new Date(date+'T12:00:00').toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});document.getElementById('confirmDetails').innerHTML=`<p><b>Reference:</b> <span class="text-brass2 font-extrabold">${ref}</span></p><p><b>Guest:</b> ${name}</p><p><b>Phone:</b> ${phone}</p><p><b>When:</b> ${nice} at ${selectedTime}</p><p><b>Party:</b> ${guests} Guest(s) • ${selectedSeat}</p><p><b>Occasion:</b> ${document.getElementById('resOccasion').value}</p>${tasting.length?`<p><b>Tasting List:</b> ${tasting.map(id=>MENU.find(m=>m.id===id).name).join(', ')}</p>`:''}`;document.getElementById('confirmModal').classList.remove('hidden')}
+function closeConfirm(){document.getElementById('confirmModal').classList.add('hidden');document.getElementById('resForm').reset();document.getElementById('resDate').value=new Date().toISOString().split('T')[0]}
+function quickBook(e){e.preventDefault();const d=document.getElementById('qDate').value||new Date().toISOString().split('T')[0];document.getElementById('resDate').value=d;guests=parseInt(document.getElementById('qGuests').value)||2;document.getElementById('guestCount').textContent=guests;const msg=document.getElementById('quickMsg');msg.textContent='✓ Great choice — '+document.getElementById('qGuests').value+', '+document.getElementById('qExp').value+'. Complete your details below to confirm.';msg.classList.remove('hidden');showToast('Checking availability — complete reservation below');setTimeout(()=>document.getElementById('reserve').scrollIntoView({behavior:'smooth'}),700)}
+
+/* Reviews */
+function addReview(e){e.preventDefault();const name=document.getElementById('revName').value.trim(),rating=parseInt(document.getElementById('revRating').value),text=document.getElementById('revText').value.trim(),occ=document.getElementById('revOccasion').value;const stars='★'.repeat(rating)+'☆'.repeat(5-rating);const card=document.createElement('div');card.className='bg-ivory border border-[#EDE6D6] rounded-[24px] p-7 reveal visible';card.innerHTML=`<div class="flex justify-between"><span class="text-brass tracking-widest">${stars}</span><span class="text-[10px] bg-white border px-3 py-1 rounded-full font-bold uppercase tracking-wider">${occ}</span></div><p class="font-display text-[20px] leading-snug mt-4">“${text}”</p><div class="flex items-center gap-3 mt-5"><span class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center font-display">${name.charAt(0).toUpperCase()}</span><div><p class="font-bold text-sm">${name}</p><p class="text-[11px] text-gray-400">Guest Preview • Verify before publishing</p></div></div>`;const list=document.getElementById('reviewList');if(list.querySelector('.border-dashed'))list.innerHTML='';list.prepend(card);e.target.reset();showToast('Thank you — your review preview is live above')}
+
+/* Misc UI */
+function toggleFaq(btn){const c=btn.nextElementSibling;const open=c.style.maxHeight&&c.style.maxHeight!=='0px';document.querySelectorAll('.faq-content').forEach(x=>x.style.maxHeight='0px');document.querySelectorAll('#reserve .faq-content').forEach(()=>{});if(!open)c.style.maxHeight=c.scrollHeight+'px';btn.querySelector('span').textContent=open?'+':'−'}
+function openVideo(){document.getElementById('videoModal').classList.remove('hidden')}function closeVideo(){document.getElementById('videoModal').classList.add('hidden')}
+function showToast(msg){const t=document.createElement('div');t.className='toast pointer-events-auto bg-[#131110] text-white pl-4 pr-5 py-3.5 rounded-full shadow-2xl flex items-center gap-3 text-sm font-semibold';t.innerHTML=`<span class="w-7 h-7 rounded-full bg-brass flex items-center justify-center text-xs shrink-0">✓</span>${msg}`;document.getElementById('toastWrap').appendChild(t);setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .4s';setTimeout(()=>t.remove(),400)},3400)}
+function closeMobile(){document.getElementById('mobileMenu').classList.add('hidden')}
+document.getElementById('mobileBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('hidden'));
+
+/* Nav + Reveal + Parallax */
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{if(window.scrollY>60)nav.classList.add('nav-scrolled');else nav.classList.remove('nav-scrolled');const hi=document.getElementById('heroImg');if(hi&&window.scrollY<900)hi.style.translate='0 '+(window.scrollY*0.12)+'px'},{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* Init */
+window.addEventListener('load',()=>{document.getElementById('loadBar').style.width='100%';setTimeout(()=>{const p=document.getElementById('preloader');p.style.opacity='0';setTimeout(()=>p.remove(),700)},600);
+  const today=new Date().toISOString().split('T')[0];document.getElementById('qDate').value=today;document.getElementById('qDate').min=today;document.getElementById('resDate').value=today;document.getElementById('resDate').min=today;
+  renderMenu();renderJourney();updateTastingUI();
+});
+setInterval(()=>{if(!document.hidden)nextJourney()},7000);
+</script>
+</body>
+</html>
